@@ -10,5 +10,11 @@ namespace DataModel
     {
         public double Value { get; set; }
         public string Currency { get; set; }
+
+        public override string ToString()
+        {
+            return Value + " " + Currency;
+        }
     }
+
 }
