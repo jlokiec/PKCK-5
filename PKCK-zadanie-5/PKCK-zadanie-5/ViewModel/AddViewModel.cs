@@ -31,11 +31,11 @@ namespace PKCK_zadanie_5.ViewModel
         }
         public void Add()
         {
-            Musician musician = new Musician(Musician.Substring(0, 4).ToUpper(), Musician);
+            Musician musician = new Musician(Musician.Substring(0, 3).ToUpper(), Musician);
             DataContext.Musicians.Add(musician);
-            Distributor distributor = new Distributor(Distributor.Substring(0, 4).ToUpper(), Distributor);
+            Distributor distributor = new Distributor(Distributor.Substring(0, 3).ToUpper(), Distributor);
             DataContext.Distributors.Add(distributor);
-            Genre genre = new Genre(Genre.Substring(0, 4).ToUpper(), Genre);
+            Genre genre = new Genre(Genre.Substring(0, 3).ToUpper(), Genre);
             DataContext.Genres.Add(genre);
             Language language = new Language(Language, Language);
             DataContext.Languages.Add(language);
