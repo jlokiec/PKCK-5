@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:pkck = "pkck-zad2"
+    targetNamespace = "pkck-zad2"
+    elementFormDefault="qualified">
+    <xs:element name = "document" type = "pkck:documentType">
+        <!-- > unique studentID -->
+        <xs:key name="unikNrStudentID">
+            <xs:selector xpath="pkck:header/pkck:authors/pkck:author"/>
+            <xs:field xpath="pkck:studentId"/>
+        </xs:key>
+		
+		<!-- key for language -->
+		<xs:key name="languageKey">
+			<xs:selector xpath="pkck:languages/pkck:language"/>
+			<xs:field xpath="@languageId"/>
+		</xs:key>
+	
+		<!-- keyref to cd language -->
+		<xs:keyref name="languageCd" refer="pkck:languageKey">
+			<xs:selector xpath="pkck:catalog/pkck:cd/cdLanguage"/>
+			<xs:field xpath="@languageId"/>
+		</xs:keyref>
+		
+		<!-- key for genre -->
+		<xs:key name="genreKey">
+            <xs:selector xpath="pkck:genres/pkck:genre"/>
+            <xs:field xpath="@genreId"/>
+        </xs:key>
+		
+		<!-- keyref to cd genre -->
+        <xs:keyref name="genreCd" refer="pkck:genreKey">
+			<xs:selector xpath="pkck:catalog/pkck:cd/cdGenre"/>
+			<xs:field xpath="@genreId"/>
+		</xs:keyref>
+
+        <!-- key for distributor -->
+		<xs:key name="distributorKey">
+            <xs:selector xpath="pkck:distributors/pkck:distributor"/>
+            <xs:field xpath="@distributorId"/>
+        </xs:key>
+		
+		<!-- keyref to cd distributor -->
+        <xs:keyref name="distributorCd" refer="pkck:distributorKey">
+			<xs:selector xpath="pkck:catalog/pkck:cd/cdDistributor"/>
+			<xs:field xpath="@distributorId"/>
+		</xs:keyref>
+
+        <!-- key for musician -->
+		<xs:key name="musicianKey">
+            <xs:selector xpath="pkck:musicians/pkck:musician"/>
+            <xs:field xpath="@musicianId"/>
+        </xs:key>
+		
+		<!-- keyref to cd musician -->
+        <xs:keyref name="musicianCd" refer="pkck:distributorKey">
+			<xs:selector xpath="pkck:catalog/pkck:cd/cdMusician"/>
+			<xs:field xpath="@musicianId"/>
+		</xs:keyref>
+    </xs:element>
+    <!-- document type -->
+    <xs:complexType name = "documentType">
+        <xs:sequence>
+            <xs:element name = "header" type = "pkck:headerType"/>
+            <xs:element name = "musicians" type = "pkck:musiciansType"/>
+            <xs:element name = "genres" type = "pkck:genresType"/>
+            <xs:element name = "languages" type = "pkck:languagesType"/>
+            <xs:element name = "distributors" type = "pkck:distributorsType"/>
+            <xs:element name = "catalog" type = "pkck:catalogType"/>
+        </xs:sequence>
+    </xs:complexType>
+	
+    <!-- header type -->
+    <xs:complexType name="headerType">
+        <xs:sequence>
+            <xs:element name="authors">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="author" type="pkck:authorType" maxOccurs="2"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name = "modificationDate" type = "xs:date"/>
+            <xs:element name = "description" type = "xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="languagesType">
+        <xs:sequence>
+            <xs:element name = "language" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name = "languageId" type = "xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- author type -->
+    <xs:complexType name = "authorType">
+        <xs:sequence>
+            <xs:group ref="pkck:osoba"/>
+            <xs:element name = "studentId">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:pattern value="[0-9][0-9][0-9][0-9][0-9][0-9]"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name = "authorId" type = "xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name = "osoba">
+        <xs:sequence>
+            <xs:element name = "name" type = "xs:string"/>
+            <xs:element name = "surname" type = "xs:string"/>
+        </xs:sequence>
+    </xs:group>
+    <!-- musicians type -->
+    <xs:complexType name = "musiciansType">
+        <xs:sequence>
+            <xs:element name = "musician" type = "pkck:musicianType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- musician type -->
+    <xs:complexType name = "musicianType">
+        <xs:sequence>
+            <xs:element name = "name" type = "xs:string"/>
+            <xs:element name = "surname" type = "xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="musicianId" type="xs:string" use="required"/>
+    </xs:complexType>
+    <!-- genres type -->
+    <xs:complexType name = "genresType">
+        <xs:sequence>
+            <xs:element name = "genre" type = "pkck:genreType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- genre type -->
+    <xs:complexType name = "genreType">
+        <xs:attribute name = "genreId" type = "xs:string"/>
+        <xs:attribute name = "genreName" type = "xs:string"/>
+    </xs:complexType>
+    <!-- distributors type -->
+    <xs:complexType name = "distributorsType">
+        <xs:sequence>
+            <xs:element name = "distributor" maxOccurs="unbounded">
+                <xs:complexType >
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name = "distributorId" type = "xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- catalog type -->
+    <xs:complexType name = "catalogType">
+        <xs:sequence>
+            <xs:element name = "cd" type = "pkck:cdType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- coverImg type -->
+    <xs:complexType name = "coverImgType">
+        <xs:attribute name = "src" type = "xs:string"/>
+    </xs:complexType>
+    <!-- cd type -->
+    <xs:complexType name = "cdType">
+        <xs:sequence>
+            <xs:element name = "cdMusician">
+                <xs:complexType>
+                    <xs:attribute name="musicianId" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name = "title" type = "xs:string"/>
+            <xs:element name = "coverImg" type = "pkck:coverImgType"/>
+            <xs:element name = "cdGenre">
+                <xs:complexType>
+                    <xs:attribute name="genreId" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name = "cdLanguage">
+                <xs:complexType>
+                    <xs:attribute name="languageId" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name = "premiereDate" type = "xs:string"/>
+            <xs:element name = "numberOfCds" type = "xs:decimal"/>
+            <xs:element name = "price">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:decimal">
+                            <xs:attribute name = "currency" type = "xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name = "cdDistributor">
+                <xs:complexType>
+                    <xs:attribute name="distributorId" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
