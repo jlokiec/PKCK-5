@@ -14,7 +14,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images/background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <ListView  Background="#FF808C8C" Opacity="0.7" Margin="46,62,42,10" ItemsSource="{Binding Cds}">
+        <ListView SelectedItem="{Binding SelectedCd}" Background="#FF808C8C" Opacity="0.7" Margin="46,62,42,47" ItemsSource="{Binding Cds}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title" Width="120" DisplayMemberBinding="{Binding Title}" />
@@ -22,12 +22,17 @@
                     <GridViewColumn Header="Language" Width="60" DisplayMemberBinding="{Binding Language}" />
                     <GridViewColumn Header="Distributor" Width="100" DisplayMemberBinding="{Binding Distributor}" />
                     <GridViewColumn Header="Genre" Width="60" DisplayMemberBinding="{Binding Genre}" />
-                    <GridViewColumn Header="Price" Width="60" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Price" Width="60" DisplayMemberBinding="{Binding Price.Value}"/>
+                    <GridViewColumn  Width="30" DisplayMemberBinding="{Binding Price.Currency}"/>
                     <GridViewColumn Header="Number of cds" Width="100" DisplayMemberBinding="{Binding NumberOfCds}" />
                     <GridViewColumn Header="Premiere date" Width="100" DisplayMemberBinding="{Binding PremiereDate}" />
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Edit" HorizontalAlignment="Left" Height="24" Margin="676,385,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding EditButton}"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="24" Margin="518,385,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding DeleteButton}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Height="24" Margin="597,385,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding AddButton}"/>
         <Label Content="Catalog cds" HorizontalAlignment="Left" Height="47" Margin="96,10,0,0" VerticalAlignment="Top" Width="389" FontSize="24" FontWeight="Bold" FontFamily="Segoe UI Black" FontStyle="Italic" Foreground="White"/>
+        <Button Content="Save Data" HorizontalAlignment="Left" Height="24" Margin="125,392,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding SaveButton}"/>
     </Grid>
 </Window>

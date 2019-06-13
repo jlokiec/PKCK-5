@@ -8,6 +8,16 @@ namespace DataModel
 {
     public class Price
     {
+        public Price()
+        {
+
+        }
+        public Price(double value, string currency)
+        {
+            Value = value;
+            Currency = currency;
+        }
+
         public double Value { get; set; }
         public string Currency { get; set; }
 
