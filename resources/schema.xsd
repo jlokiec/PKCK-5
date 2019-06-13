@@ -183,7 +183,7 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name = "premiereDate" type = "xs:string"/>
-            <xs:element name = "numberOfCds" type = "xs:decimal"/>
+            <xs:element name = "numberOfCds" type="xs:positiveInteger" />
             <xs:element name = "price">
                 <xs:complexType>
                     <xs:simpleContent>
