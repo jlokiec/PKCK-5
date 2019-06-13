@@ -51,6 +51,7 @@
     <Compile Include="MusicXmlConstants.cs" />
     <Compile Include="MusicXmlReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XsdValidationException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
