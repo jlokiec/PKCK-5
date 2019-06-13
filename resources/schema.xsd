@@ -109,7 +109,6 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name = "authorId" type = "xs:decimal"/>
         </xs:sequence>
     </xs:complexType>
 
