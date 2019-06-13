@@ -72,7 +72,14 @@ namespace PKCK_zadanie_5.ViewModel
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string saveFilePath = fileDialog.FileName;
-                MusicXmlWriter.Serialize(dataContext, saveFilePath);
+                try
+                {
+                    MusicXmlWriter.Serialize(dataContext, saveFilePath);
+                }
+                catch (XsdValidationException e)
+                {
+                    MessageBox.Show(e.Message, "XSD validation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
