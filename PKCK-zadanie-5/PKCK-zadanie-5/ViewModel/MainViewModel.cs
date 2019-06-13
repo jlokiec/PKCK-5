@@ -1,15 +1,11 @@
 ﻿using DataModel;
 using PKCK_zadanie_5.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
 using System.Windows.Input;
 using XmlService;
-using XmlService.Repository;
 
 namespace PKCK_zadanie_5.ViewModel
 {
@@ -65,7 +61,19 @@ namespace PKCK_zadanie_5.ViewModel
         }
         private void SaveData()
         {
-            MusicXmlWriter.Serialize(dataContext, @"..\..\..\..\resources\music1.xml");
+            string startingPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\resources"));
+            SaveFileDialog fileDialog = new SaveFileDialog()
+            {
+                InitialDirectory = startingPath,
+                FileName = "music_saved",
+                Filter = "XML files (*.xml)|*.xml",
+                RestoreDirectory = true
+            };
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string saveFilePath = fileDialog.FileName;
+                MusicXmlWriter.Serialize(dataContext, saveFilePath);
+            }
         }
     }
 }
