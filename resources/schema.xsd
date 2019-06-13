@@ -163,10 +163,6 @@
             <xs:element name = "cd" type = "pkck:cdType" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
-    <!-- coverImg type -->
-    <xs:complexType name = "coverImgType">
-        <xs:attribute name = "src" type = "xs:string"/>
-    </xs:complexType>
     <!-- cd type -->
     <xs:complexType name = "cdType">
         <xs:sequence>
@@ -176,7 +172,6 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name = "title" type = "xs:string"/>
-            <xs:element name = "coverImg" type = "pkck:coverImgType"/>
             <xs:element name = "cdGenre">
                 <xs:complexType>
                     <xs:attribute name="genreId" type="xs:string"/>
