@@ -1,10 +1,6 @@
 ﻿using DataModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 using XmlService.Repository;
 
@@ -16,25 +12,26 @@ namespace XmlService
         {
             DataContext dataContext = new DataContext();
             XElement xmlElement = XElement.Load(filePath);
+            XNamespace xmlNamespace = "pkck-zad2";
 
-            dataContext.Musicians = ReadMusicians(xmlElement);
-            dataContext.Genres = ReadGenres(xmlElement);
-            dataContext.Languages = ReadLanguages(xmlElement);
-            dataContext.Distributors = ReadDistributors(xmlElement);
-            dataContext.Cds = ConvertCdsFromXmlToCds(ReadCds(xmlElement), dataContext);
+            dataContext.Musicians = ReadMusicians(xmlElement, xmlNamespace);
+            dataContext.Genres = ReadGenres(xmlElement, xmlNamespace);
+            dataContext.Languages = ReadLanguages(xmlElement, xmlNamespace);
+            dataContext.Distributors = ReadDistributors(xmlElement, xmlNamespace);
+            dataContext.Cds = ConvertCdsFromXmlToCds(ReadCds(xmlElement, xmlNamespace), dataContext);
 
             return dataContext;
         }
 
-        private MusicianRepository ReadMusicians(XElement xmlElement)
+        private MusicianRepository ReadMusicians(XElement xmlElement, XNamespace xmlNamespace)
         {
             MusicianRepository musicianRepository = new MusicianRepository();
 
-            IEnumerable<Musician> musicians = from musician in xmlElement.Descendants(MusicXmlConstants.MUSICIAN_NODE)
+            IEnumerable<Musician> musicians = from musician in xmlElement.Descendants(xmlNamespace + MusicXmlConstants.MUSICIAN_NODE)
                                               select new Musician()
                                               {
                                                   Id = musician.Attribute(MusicXmlConstants.MUSICIAN_ID).Value,
-                                                  Name = musician.Element(MusicXmlConstants.MUSICIAN_NAME).Value
+                                                  Name = musician.Element(xmlNamespace + MusicXmlConstants.MUSICIAN_NAME).Value
                                               };
 
             foreach (Musician musician in musicians)
@@ -45,11 +42,11 @@ namespace XmlService
             return musicianRepository;
         }
 
-        private GenreRepository ReadGenres(XElement xmlElement)
+        private GenreRepository ReadGenres(XElement xmlElement, XNamespace xmlNamespace)
         {
             GenreRepository genreRepository = new GenreRepository();
 
-            IEnumerable<Genre> genres = from genre in xmlElement.Descendants(MusicXmlConstants.GENRE_NODE)
+            IEnumerable<Genre> genres = from genre in xmlElement.Descendants(xmlNamespace + MusicXmlConstants.GENRE_NODE)
                                         select new Genre()
                                         {
                                             Id = genre.Attribute(MusicXmlConstants.GENRE_ID).Value,
@@ -64,11 +61,11 @@ namespace XmlService
             return genreRepository;
         }
 
-        private LanguageRepository ReadLanguages(XElement xmlElement)
+        private LanguageRepository ReadLanguages(XElement xmlElement, XNamespace xmlNamespace)
         {
             LanguageRepository languageRepository = new LanguageRepository();
 
-            IEnumerable<Language> languages = from language in xmlElement.Descendants(MusicXmlConstants.LANGUAGE_NODE)
+            IEnumerable<Language> languages = from language in xmlElement.Descendants(xmlNamespace + MusicXmlConstants.LANGUAGE_NODE)
                                               select new Language()
                                               {
                                                   Id = language.Attribute(MusicXmlConstants.LANGUAGE_ID).Value,
@@ -83,11 +80,11 @@ namespace XmlService
             return languageRepository;
         }
 
-        private DistributorRepository ReadDistributors(XElement xmlElement)
+        private DistributorRepository ReadDistributors(XElement xmlElement, XNamespace xmlNamespace)
         {
             DistributorRepository distributorRepository = new DistributorRepository();
 
-            IEnumerable<Distributor> distributors = from distributor in xmlElement.Descendants(MusicXmlConstants.DISTRIBUTOR_NODE)
+            IEnumerable<Distributor> distributors = from distributor in xmlElement.Descendants(xmlNamespace + MusicXmlConstants.DISTRIBUTOR_NODE)
                                                     select new Distributor()
                                                     {
                                                         Id = distributor.Attribute(MusicXmlConstants.DISTRIBUTOR_ID).Value,
@@ -102,22 +99,22 @@ namespace XmlService
             return distributorRepository;
         }
 
-        private List<CdXml> ReadCds(XElement xmlElement)
+        private List<CdXml> ReadCds(XElement xmlElement, XNamespace xmlNamespace)
         {
             List<CdXml> cdsXml = new List<CdXml>();
 
-            IEnumerable<CdXml> cdsFromXml = from catalog in xmlElement.Descendants(MusicXmlConstants.CD_NODE)
+            IEnumerable<CdXml> cdsFromXml = from catalog in xmlElement.Descendants(xmlNamespace + MusicXmlConstants.CD_NODE)
                                             select new CdXml
                                             {
-                                                MusicianId = catalog.Element(MusicXmlConstants.CD_MUSICIAN_NODE).Attribute(MusicXmlConstants.MUSICIAN_ID).Value,
-                                                Title = catalog.Element(MusicXmlConstants.CD_TITLE_NODE).Value,
-                                                GenreId = catalog.Element(MusicXmlConstants.CD_GENRE_NODE).Attribute(MusicXmlConstants.GENRE_ID).Value,
-                                                LanguageId = catalog.Element(MusicXmlConstants.CD_LANGUAGE_NODE).Attribute(MusicXmlConstants.LANGUAGE_ID).Value,
-                                                PremiereDate = catalog.Element(MusicXmlConstants.CD_PREMIER_DATE_NODE).Value,
-                                                NumberOfCds = catalog.Element(MusicXmlConstants.CD_NUMBER_OF_CDS_NODE).Value,
-                                                PriceValue = catalog.Element(MusicXmlConstants.CD_PRICE_NODE).Value,
-                                                PriceCurrency = catalog.Element(MusicXmlConstants.CD_PRICE_NODE).Attribute(MusicXmlConstants.CD_PRICE_CURRENCY_ATTRIBUTE).Value,
-                                                DistributorId = catalog.Element(MusicXmlConstants.CD_DISTRIBUTOR_NODE).Attribute(MusicXmlConstants.DISTRIBUTOR_ID).Value
+                                                MusicianId = catalog.Element(xmlNamespace + MusicXmlConstants.CD_MUSICIAN_NODE).Attribute(MusicXmlConstants.MUSICIAN_ID).Value,
+                                                Title = catalog.Element(xmlNamespace + MusicXmlConstants.CD_TITLE_NODE).Value,
+                                                GenreId = catalog.Element(xmlNamespace + MusicXmlConstants.CD_GENRE_NODE).Attribute(MusicXmlConstants.GENRE_ID).Value,
+                                                LanguageId = catalog.Element(xmlNamespace + MusicXmlConstants.CD_LANGUAGE_NODE).Attribute(MusicXmlConstants.LANGUAGE_ID).Value,
+                                                PremiereDate = catalog.Element(xmlNamespace + MusicXmlConstants.CD_PREMIER_DATE_NODE).Value,
+                                                NumberOfCds = catalog.Element(xmlNamespace + MusicXmlConstants.CD_NUMBER_OF_CDS_NODE).Value,
+                                                PriceValue = catalog.Element(xmlNamespace + MusicXmlConstants.CD_PRICE_NODE).Value,
+                                                PriceCurrency = catalog.Element(xmlNamespace + MusicXmlConstants.CD_PRICE_NODE).Attribute(MusicXmlConstants.CD_PRICE_CURRENCY_ATTRIBUTE).Value,
+                                                DistributorId = catalog.Element(xmlNamespace + MusicXmlConstants.CD_DISTRIBUTOR_NODE).Attribute(MusicXmlConstants.DISTRIBUTOR_ID).Value
                                             };
 
             foreach (CdXml cdXml in cdsFromXml)
