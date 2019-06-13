@@ -10,7 +10,7 @@
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid Margin="0,0,0,-6">
         <Grid.Background>
             <ImageBrush ImageSource="Images/background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
@@ -33,6 +33,6 @@
         <Button Content="Delete" HorizontalAlignment="Left" Height="24" Margin="518,385,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding DeleteButton}"/>
         <Button Content="Add" HorizontalAlignment="Left" Height="24" Margin="597,385,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding AddButton}"/>
         <Label Content="Catalog cds" HorizontalAlignment="Left" Height="47" Margin="96,10,0,0" VerticalAlignment="Top" Width="389" FontSize="24" FontWeight="Bold" FontFamily="Segoe UI Black" FontStyle="Italic" Foreground="White"/>
-        <Button Content="Save Data" HorizontalAlignment="Left" Height="24" Margin="125,392,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding SaveButton}"/>
+        <Button Content="Save Data" HorizontalAlignment="Left" Height="24" Margin="46,385,0,0" VerticalAlignment="Top" Width="74" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="14" FontFamily="Segoe UI Light" Command="{Binding SaveButton}"/>
     </Grid>
 </Window>

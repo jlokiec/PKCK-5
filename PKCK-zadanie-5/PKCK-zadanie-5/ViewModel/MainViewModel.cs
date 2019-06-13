@@ -46,8 +46,8 @@ namespace PKCK_zadanie_5.ViewModel
 
         private void Delete()
         {
-            Cds.Remove(SelectedCd);
             dataContext.Cds.Remove(SelectedCd);
+            Cds.Remove(SelectedCd);
         }
 
         private void ButtonAdd()

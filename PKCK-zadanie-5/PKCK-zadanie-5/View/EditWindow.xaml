@@ -40,16 +40,15 @@
         <TextBox HorizontalAlignment="Left" Height="29" Margin="172,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" Opacity="0.6" FontSize="16" Text="{Binding Cd.NumberOfCds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <DatePicker HorizontalAlignment="Left" Margin="172,237,0,0" VerticalAlignment="Top" Width="240" Height="25" Background="#FFC7C7C7" Foreground="#FFC7C7C7" SelectedDate="{Binding Cd.PremiereDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ComboBox HorizontalAlignment="Left" Margin="172,57,0,0" VerticalAlignment="Top" Width="165" Background="#FFE8E0E0"  ItemsSource="{Binding Musicians}" SelectedItem="{Binding Cd.Musician, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+        <ComboBox HorizontalAlignment="Left" Margin="172,53,0,0"  VerticalAlignment="Top" Width="240" Background="#FFE8E0E0"  ItemsSource="{Binding Musicians}" SelectedItem="{Binding Cd.Musician, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="29"/>
 
-        <ComboBox HorizontalAlignment="Left" Margin="172,83,0,0" VerticalAlignment="Top" Width="165" Background="#FFE8E0E0"  ItemsSource="{Binding Languages}" SelectedItem="{Binding Cd.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
-        <ComboBox HorizontalAlignment="Left" Margin="172,117,0,0" VerticalAlignment="Top" Width="165" Background="#FFE8E0E0"  ItemsSource="{Binding Distributors}" SelectedItem="{Binding Cd.Distributor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
-        <ComboBox HorizontalAlignment="Left" Margin="172,147,0,0" VerticalAlignment="Top" Width="165" Background="#FFE8E0E0"  ItemsSource="{Binding Genres}" SelectedItem="{Binding Cd.Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+        <ComboBox HorizontalAlignment="Left" Margin="172,82,0,0" VerticalAlignment="Top" Width="240" Background="#FFE8E0E0"  ItemsSource="{Binding Languages}" SelectedItem="{Binding Cd.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="31"/>
+        <ComboBox HorizontalAlignment="Left" Margin="172,113,0,0" VerticalAlignment="Top" Width="240" Background="#FFE8E0E0"  ItemsSource="{Binding Distributors}" SelectedItem="{Binding Cd.Distributor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="29"/>
+        <ComboBox HorizontalAlignment="Left" Margin="172,143,0,0" VerticalAlignment="Top" Width="240" Background="#FFE8E0E0"  ItemsSource="{Binding Genres}" SelectedItem="{Binding Cd.Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="29"/>
 
         <ComboBox HorizontalAlignment="Left" Margin="327,173,0,0" VerticalAlignment="Top" Width="85" Background="#FFE8E0E0" SelectedValuePath="Tag" SelectedValue="{Binding Cd.Price.Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="29" >
             <ComboBoxItem Background="#FFE8E0E0" Content="PLN" Tag="PLN"/>
             <ComboBoxItem Background="#FFE8E0E0" Content="USD" Tag="USD"/>
         </ComboBox>
-        <Button Content="Add new" HorizontalAlignment="Left" Margin="342,61,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
     </Grid>
 </Window>
