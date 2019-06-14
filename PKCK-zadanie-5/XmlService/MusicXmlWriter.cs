@@ -59,7 +59,6 @@ namespace XmlService
 
             XmlSchemaSet schemaSet = new XmlSchemaSet();
             schemaSet.Add(null, @"..\..\..\..\resources\schema.xsd");
-            StringBuilder sb = new StringBuilder();
             doc.Validate(schemaSet, (sender, args) => throw new XsdValidationException(args.Exception.Message));
 
             doc.Save(path);
