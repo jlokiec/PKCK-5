@@ -1,5 +1,7 @@
 ﻿using DataModel;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 using XmlService.Repository;
@@ -142,7 +144,7 @@ namespace XmlService
                     Title = cdXml.Title,
                     Genre = genres[cdXml.GenreId],
                     Language = languages[cdXml.LanguageId],
-                    PremiereDate = cdXml.PremiereDate,
+                    PremiereDate = DateTime.ParseExact(cdXml.PremiereDate, "dd.MM.yyyy", CultureInfo.InvariantCulture),
                     NumberOfCds = int.Parse(cdXml.NumberOfCds),
                     Price = new Price()
                     {

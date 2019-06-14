@@ -41,7 +41,7 @@ namespace PKCK_zadanie_5.ViewModel
             DataContext.Languages.Add(language);
             Price price = new Price(Price, Currency);
 
-            Cd cd = new Cd(musician, Title, genre, language, PremiereDate.ToString("dd.MM.yyyy"), NumberOfCds, price, distributor);
+            Cd cd = new Cd(musician, Title, genre, language, PremiereDate, NumberOfCds, price, distributor);
             DataContext.Cds.Add(cd);
             Cds.Add(cd);
         }

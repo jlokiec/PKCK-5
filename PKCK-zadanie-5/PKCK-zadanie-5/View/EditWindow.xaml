@@ -38,7 +38,7 @@
         <TextBox HorizontalAlignment="Left" Height="29" Margin="172,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" Opacity="0.6" FontSize="16" Text="{Binding Cd.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox HorizontalAlignment="Left" Height="29" Margin="172,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Opacity="0.6" FontSize="16" Text="{Binding Cd.Price.Value, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,BindsDirectlyToSource=True}"/>
         <TextBox HorizontalAlignment="Left" Height="29" Margin="172,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" Opacity="0.6" FontSize="16" Text="{Binding Cd.NumberOfCds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <DatePicker HorizontalAlignment="Left" Margin="172,237,0,0" VerticalAlignment="Top" Width="240" Height="25" Background="#FFC7C7C7" Foreground="#FFC7C7C7" SelectedDate="{Binding Cd.PremiereDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker HorizontalAlignment="Left" Margin="172,237,0,0" VerticalAlignment="Top" Width="240" Height="25" Background="#FFC7C7C7" Foreground="#FFC7C7C7" SelectedDate="{Binding Cd.PremiereDate, StringFormat='dd.MM.yyyy', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <ComboBox HorizontalAlignment="Left" Margin="172,53,0,0"  VerticalAlignment="Top" Width="240" Background="#FFE8E0E0"  ItemsSource="{Binding Musicians}" SelectedItem="{Binding Cd.Musician, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="29"/>
 

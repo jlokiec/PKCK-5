@@ -25,7 +25,7 @@
                     <GridViewColumn Header="Price" Width="60" DisplayMemberBinding="{Binding Price.Value}"/>
                     <GridViewColumn  Width="30" DisplayMemberBinding="{Binding Price.Currency}"/>
                     <GridViewColumn Header="Number of cds" Width="100" DisplayMemberBinding="{Binding NumberOfCds}" />
-                    <GridViewColumn Header="Premiere date" Width="100" DisplayMemberBinding="{Binding PremiereDate}" />
+                    <GridViewColumn Header="Premiere date" Width="100" DisplayMemberBinding="{Binding PremiereDate, StringFormat='dd.MM.yyyy'}" />
                 </GridView>
             </ListView.View>
         </ListView>

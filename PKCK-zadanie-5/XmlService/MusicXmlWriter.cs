@@ -47,7 +47,7 @@ namespace XmlService
               new XElement(pkckNamespace + "title", d.Title),
               new XElement(pkckNamespace + "cdGenre", new XAttribute("genreId", d.Genre.Id)),
               new XElement(pkckNamespace + "cdLanguage", new XAttribute("languageId", d.Language.Id)),
-              new XElement(pkckNamespace + "premiereDate", d.PremiereDate),
+              new XElement(pkckNamespace + "premiereDate", d.PremiereDate.ToString("dd.MM.yyyy")),
               new XElement(pkckNamespace + "numberOfCds", d.NumberOfCds),
               new XElement(pkckNamespace + "price", new XAttribute("currency", d.Price.Currency), d.Price.Value),
               new XElement(pkckNamespace + "cdDistributor", new XAttribute("distributorId", d.Distributor.Id)))).ToArray());
